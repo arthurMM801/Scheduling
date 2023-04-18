@@ -1,10 +1,3 @@
-// Equipe
-// Arthur de Melo Maia - 2111056
-// Gustavo Herbster Martins Macedo - 2020716
-// Matheus Gois - 2015037
-// Victor Hugo Paiva - 2127580
-
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -225,30 +218,7 @@ int main() {
 
     chegada = 0;
     
-    // inicializando os PCBS
-    /*
-    for (i = 0; i < PROCESS; i++) {     
-        int burst = rand() % 9 + 1;
-        int prioridade = rand() % 9 + 1;
-        if (i < 2) {
-            chegada = 0;
-        } else {
-            chegada = i - 1;
-        }
-        PCB *pcb = (PCB *)malloc(sizeof(PCB));
-        pcb->pid = i;
-        pcb->chegada = chegada;
-        pcb->burst = burst;
-        pcb->prioridade = prioridade;
-        pcb->prev = NULL;
-        pcb->next = NULL;
-        pcb->dad = NULL;
-
-        lista_de_PCBS_Priority[i] = pcb;
-        lista_de_burst[i] = burst;
-    }
-    */
-    
+  
     // Alimentando 
 
     Prioridade fila_Priority;
@@ -288,41 +258,15 @@ int main() {
         }
         node = pop(&fila_Priority);
     }
-
     
     
     // Shortest Job First
 	
-	printf("\n\nSJF\n\n");
-    //lista_de_PCBS[PROCESS];
-    //lista_de_burst[PROCESS];
+    printf("\n\nSJF\n\n");
     float turnaround_SJF[PROCESS];
     float espera_SJF[PROCESS];
 
  	// inicializando os PCBS
-	/*
-    chegada = 0;
-    for (i = 0; i < PROCESS; i++) {    
-        int burst = rand() % 9 + 1;
-        float prioridade = rand() % 9 + 1;
-        if (i < 2) {
-            chegada = 0;
-        } else {
-            chegada = i - 1;
-        }
-        PCB *pcb = (PCB *)malloc(sizeof(PCB));   
-        pcb->pid = i;
-        pcb->chegada = chegada;
-        pcb->burst = burst;
-        pcb->prioridade = prioridade;
-        pcb->prev = NULL;
-        pcb->next = NULL;
-        pcb->dad = NULL;
-
-        lista_de_PCBS[i] = pcb;
-        lista_de_burst[i] = burst;
-    }
-	*/
 	
     Prioridade fila;
     fila.tree = NULL;
@@ -368,6 +312,7 @@ int main() {
     
     
     // Round Robin
+	
     printf("\n\nRound Robin\n\n");
     
     
@@ -375,26 +320,6 @@ int main() {
 	float espera_RR[PROCESS];
 	FCFS filaRR;
 	init_FCFS(&filaRR);
-
-	
-	// Criando PCBs
-	/*
-	chegada = 0;
-	for(i=0; i < PROCESS; i++){
-		int burst = (rand() % 9)+1;
-		//int burst = list[i];
-		int prioridade = (rand() % 9)+1;
-		if( i < 2)
-			chegada = 0;
-		else
-			chegada = i-1;
-		PCB pcb;
-		init_pcb(&pcb, i, chegada, burst, prioridade);
-		lista_de_PCBS_RR[i] = pcb;
-		lista_de_burst_RR[i] = burst;
-	} 
-	*/
-	
 	
 	// alimentando
 	for(i = 0; i < PROCESS; i++){
@@ -406,6 +331,7 @@ int main() {
 
 
 	// Prints dos PCBs
+	
 	printf("Prints PCB\n");
 	node = filaRR.head;
 	for(i = 0; i < PROCESS; i++){
@@ -413,8 +339,8 @@ int main() {
 		node = node->next;
 	}
 	
-	
 	printf("\nSCHEDULING\n");
+	
 	// Scheduling
 	node = pop_FCFS(&filaRR);
 	t = 0;
